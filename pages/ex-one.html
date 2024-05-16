@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemple One</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <!-- Prism CSS for syntax highlighting -->
+    <link rel="stylesheet" href="../prism/prism.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+
+  <body>
+    <div id="map">
+      <div class="toggle">MORE</div>
+      <div class="modal">
+        <div class="nav"></div>
+        <div class="content">
+          <p>
+            Chấm trên bảng đồ chọn Marker và Marker di chuyển theo thao tác của
+            người dùng:
+          </p>
+          <input type="radio" id="single" name="type_marker" checked />
+          <label for="single">Hiển thị chấm duy nhất chỉ một marker</label><br />
+          <input type="radio" id="mutiple" name="type_marker"/>
+          <label for="mutiple">Hiển thị chấm nhiều marker</label><br />
+        </div>
+        <div class="code">
+          <pre><code class="language-javascript">
+var marker;
+
+// hiển thị nhiều marker khi click
+map.on("click", (e) => {
+  marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+});
+
+// hiển thị một marker duy nhất khi click trên bảng đồ
+map.on("click", (e) => {
+  if (marker) {
+    map.removeLayer(marker)
+  }
+  marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+});
+            </code></pre>
+        </div>
+      </div>
+      <div class="layer"></div>
+    </div>
+    <footer>
+      <p>Made by ptduy14 with love ❤️</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <!-- Prism JS for syntax highlighting -->
+    <script src="../prism/prism.js"></script>
+    <!-- Main JS file -->
+    <script type="module" src="../main.js"></script>
+    <!-- Custom JS -->
+    <script>
+      var map = L.map("map").setView([16.2788587, 103.6422993], 6);
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      var markers = [];
+      var singleMarker = document.getElementById('single');
+      var multipleMarker = document.getElementById('mutiple');
+
+      // Function to remove all markers
+      function removeAllMarkers() {
+        markers.forEach(marker => {
+          map.removeLayer(marker);
+        });
+        markers = [];
+      }
+
+      // Event listener for radio button change
+      document.querySelectorAll('input[name="type_marker"]').forEach((elem) => {
+        elem.addEventListener("change", function(event) {
+          if (singleMarker.checked) {
+            removeAllMarkers();
+          }
+        });
+      });
+
+      map.on("click", (e) => {
+        if (singleMarker.checked) {
+          removeAllMarkers();
+          var marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+          markers.push(marker);
+        } else {
+          var marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+          markers.push(marker);
+        }
+      });
+    </script>
+  </body>
+</html>
