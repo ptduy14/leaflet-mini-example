@@ -99,6 +99,8 @@ map.on('click', (e) => {
 
         if (startPoint && endPoint) {
           polyline = L.polyline([startPoint, endPoint], { color: "red" }).addTo(map);
+          startPoint = null;
+          endPoint = null;
         }
       });
     </script>
