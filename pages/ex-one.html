@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exemple One</title>
-    <link rel="icon" type="image/x-icon" href="https://www.svgrepo.com/show/353991/leaflet.svg">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://www.svgrepo.com/show/353991/leaflet.svg"
+    />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -17,23 +21,21 @@
   </head>
 
   <body>
-    <div id="map">
-      <div class="toggle">MORE</div>
-      <div class="modal">
-        <div class="nav"></div>
-        <div class="content">
-          <p>
-            Chấm trên bảng đồ chọn Marker và Marker di chuyển theo thao tác của
-            người dùng:
-          </p>
-          <input type="radio" id="single" name="type_marker" checked />
-          <label for="single">Hiển thị chấm duy nhất chỉ một marker</label
-          ><br />
-          <input type="radio" id="mutiple" name="type_marker" />
-          <label for="mutiple">Hiển thị chấm nhiều marker</label><br />
-        </div>
-        <div class="code">
-          <pre><code class="language-javascript">
+    <div class="toggle">MORE</div>
+    <div class="modal">
+      <div class="nav"></div>
+      <div class="content">
+        <p>
+          Chấm trên bảng đồ chọn Marker và Marker di chuyển theo thao tác của
+          người dùng:
+        </p>
+        <input type="radio" id="single" name="type_marker" checked />
+        <label for="single">Hiển thị chấm duy nhất chỉ một marker</label><br />
+        <input type="radio" id="mutiple" name="type_marker" />
+        <label for="mutiple">Hiển thị chấm nhiều marker</label><br />
+      </div>
+      <div class="code">
+        <pre><code class="language-javascript">
 var marker;
 
 // hiển thị nhiều marker khi click
@@ -51,11 +53,11 @@ map.on("click", (e) => {
   marker.bindPopup('Latitude: ' + e.latlng.lat + '<br>Longitude: ' + e.latlng.lng).openPopup();
 });
             </code></pre>
-        </div>
-        <a href="../pages/ex-two.html">Bài tiếp</a>
       </div>
-      <div class="layer"></div>
+      <a href="../pages/ex-two.html">Bài tiếp</a>
     </div>
+    <div class="layer"></div>
+    <div id="map"></div>
     <footer>
       <p>Made by ptduy14 with love ❤️</p>
     </footer>

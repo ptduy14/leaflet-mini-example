@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exemple Four</title>
-    <link rel="icon" type="image/x-icon" href="https://www.svgrepo.com/show/353991/leaflet.svg">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://www.svgrepo.com/show/353991/leaflet.svg"
+    />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -17,37 +21,37 @@
   </head>
 
   <body>
-    <div id="map">
-      <div class="toggle">MORE</div>
-      <div class="modal">
-        <div class="nav"></div>
-        <div class="content">
-          <p>
-            Thiết kế polygon hình tứ giác theo thao tác click chuột của người dùng:
-          </p>
-        </div>
-        <div class="code">
-          <pre><code class="language-javascript">
+    <div class="toggle">MORE</div>
+    <div class="layer"></div>
+    <div class="modal">
+      <div class="nav"></div>
+      <div class="content">
+        <p>
+          Thiết kế polygon hình tứ giác theo thao tác click chuột của người
+          dùng:
+        </p>
+      </div>
+      <div class="code">
+        <pre><code class="language-javascript">
 var polygonPoints = []
 var polygon;
 var marker;
 
 map.on('click', (e) => {
-  // kiểm tra nếu độ dài mảng polygonPoints thì vẽ polygon
-  if (polygonPoints.length == 4) {
-    polygon = L.polygon(polygonPoints, {color: 'red'}).addTo(map);
-    polygonPoints = []
-  } else {
-    polygonPoints.push(e.latlng)
-    marker = L.marker(e.latlng).addTo(map)
-  }
+// kiểm tra nếu độ dài mảng polygonPoints thì vẽ polygon
+if (polygonPoints.length == 4) {
+  polygon = L.polygon(polygonPoints, {color: 'red'}).addTo(map);
+  polygonPoints = []
+} else {
+  polygonPoints.push(e.latlng)
+  marker = L.marker(e.latlng).addTo(map)
+}
 })
-            </code></pre>
-        </div>
-        <a href="../pages/ex-one.html">Bài trước</a>
+          </code></pre>
       </div>
-      <div class="layer"></div>
+      <a href="../pages/ex-one.html">Bài trước</a>
     </div>
+    <div id="map"></div>
     <footer>
       <p>Made by ptduy14 with love ❤️</p>
     </footer>
@@ -72,20 +76,20 @@ map.on('click', (e) => {
           '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
 
-      var polygonPoints = []
+      var polygonPoints = [];
       var polygon;
       var marker;
-      
-      map.on('click', (e) => {
+
+      map.on("click", (e) => {
         // kiểm tra nếu độ dài mảng polygonPoints thì vẽ polygon
         if (polygonPoints.length == 4) {
-          polygon = L.polygon(polygonPoints, {color: 'red'}).addTo(map);
-          polygonPoints = []
+          polygon = L.polygon(polygonPoints, { color: "red" }).addTo(map);
+          polygonPoints = [];
         } else {
-          polygonPoints.push(e.latlng)
-          marker = L.marker(e.latlng).addTo(map)
+          polygonPoints.push(e.latlng);
+          marker = L.marker(e.latlng).addTo(map);
         }
-      })
+      });
     </script>
   </body>
 </html>

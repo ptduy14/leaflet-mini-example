@@ -5,6 +5,10 @@
     font-size: 20px;
 }
 
+body {
+    overflow: hidden;
+}
+
 html{
     background-color: #282A36;
     color: #F8F8F2;
@@ -12,7 +16,7 @@ html{
 
 #map {
     position: relative;
-    height: 90vh;
+    height: 93vh;
     width: 100%;
 }
 
@@ -51,7 +55,7 @@ footer {
 
 .modal {
     position: absolute;
-    height: 90vh;
+    height: 93vh;
     width: 60%;
     z-index: 99999;
     top: 0;
