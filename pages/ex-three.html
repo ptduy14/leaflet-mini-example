@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemple One</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Prism CSS for syntax highlighting -->
+  <link rel="stylesheet" href="../prism/prism.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <div id="map">
+    <div class="toggle">MORE</div>
+    <div class="modal">
+      <div class="nav"></div>
+      <div class="content">
+        <p>
+          Vẽ Polyline bằng thao tác click chuột trên bản đồ. Trong đó: </br>
+          - Click chuột: tạo marker và điểm mới đưa vào Polyline </br>
+          - Kết thúc vẽ bằng thao tác double click
+        </p>
+      </div>
+      <div class="code">
+        <pre><code class="language-javascript">
+var points = [];
+var marker;
+var polyline;
+      
+// khởi tạo hàm vẽ polyline
+const drawPolygon = (e) => {
+  points.push(e.latlng);
+  marker = L.marker(e.latlng).addTo(map)
+      
+  if (points.length >= 2) {
+    polyline = L.polyline(points, {color: 'red'}).addTo(map);
+  }
+}
+      
+// tạo sự kiện click để vẽ
+map.on('click', drawPolygon)
+      
+// tạo hàm off sự kiện click
+const endDrawing = () => {
+  map.off('click', drawPolygon);
+};
+      
+// khởi tạo event double click thì gọi hàm off sự kiện slick
+map.on('dblclick', endDrawing);
+        </code></pre>
+      </div>
+      <a href="../pages/ex-one.html">Bài trước</a>
+      <a href="../">Bài tiếp</a>
+    </div>
+    <div class="layer"></div>
+  </div>
+  <footer>
+    <p>Made by ptduy14 with love ❤️</p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Prism JS for syntax highlighting -->
+  <script src="../prism/prism.js"></script>
+  <!-- Main JS file -->
+  <script type="module" src="../main.js"></script>
+  <!-- Custom JS -->
+  <script>
+    var map = L.map("map").setView([16.2788587, 103.6422993], 6);
+
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    var points = [];
+    var marker;
+    var polyline;
+
+    // khởi tạo hàm vẽ polyline
+    const drawPolygon = (e) => {
+      points.push(e.latlng);
+      marker = L.marker(e.latlng).addTo(map)
+
+      if (points.length >= 2) {
+        polyline = L.polyline(points, { color: 'red' }).addTo(map);
+      }
+    }
+
+    // tạo sự kiện click để vẽ
+    map.on('click', drawPolygon)
+
+    // tạo hàm off sự kiện click
+    const endDrawing = () => {
+      map.off('click', drawPolygon);
+    };
+
+    // khởi tạo event double click thì gọi hàm off sự kiện slick
+    map.on('dblclick', endDrawing);
+
+  </script>
+</body>
+
+</html>

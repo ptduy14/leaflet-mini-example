@@ -52,7 +52,7 @@ footer {
 .modal {
     position: absolute;
     height: 90vh;
-    width: 45%;
+    width: 60%;
     z-index: 99999;
     top: 0;
     right: -10000px;
@@ -68,4 +68,12 @@ footer {
 
 .content > label {
     font-size: 16px;
+}
+
+.modal > a {
+    color: #F8F8F2;
+}
+
+.modal > a:nth-last-child(1) {
+    margin-left: 10px;
 }

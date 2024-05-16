@@ -26,8 +26,9 @@
             người dùng:
           </p>
           <input type="radio" id="single" name="type_marker" checked />
-          <label for="single">Hiển thị chấm duy nhất chỉ một marker</label><br />
-          <input type="radio" id="mutiple" name="type_marker"/>
+          <label for="single">Hiển thị chấm duy nhất chỉ một marker</label
+          ><br />
+          <input type="radio" id="mutiple" name="type_marker" />
           <label for="mutiple">Hiển thị chấm nhiều marker</label><br />
         </div>
         <div class="code">
@@ -37,6 +38,7 @@ var marker;
 // hiển thị nhiều marker khi click
 map.on("click", (e) => {
   marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+  marker.bindPopup('Latitude: ' + e.latlng.lat + '<br>Longitude: ' + e.latlng.lng).openPopup();
 });
 
 // hiển thị một marker duy nhất khi click trên bảng đồ
@@ -45,9 +47,11 @@ map.on("click", (e) => {
     map.removeLayer(marker)
   }
   marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+  marker.bindPopup('Latitude: ' + e.latlng.lat + '<br>Longitude: ' + e.latlng.lng).openPopup();
 });
             </code></pre>
         </div>
+        <a href="../pages/ex-two.html">Bài tiếp</a>
       </div>
       <div class="layer"></div>
     </div>
@@ -76,12 +80,12 @@ map.on("click", (e) => {
       }).addTo(map);
 
       var markers = [];
-      var singleMarker = document.getElementById('single');
-      var multipleMarker = document.getElementById('mutiple');
+      var singleMarker = document.getElementById("single");
+      var multipleMarker = document.getElementById("mutiple");
 
       // Function to remove all markers
       function removeAllMarkers() {
-        markers.forEach(marker => {
+        markers.forEach((marker) => {
           map.removeLayer(marker);
         });
         markers = [];
@@ -89,7 +93,7 @@ map.on("click", (e) => {
 
       // Event listener for radio button change
       document.querySelectorAll('input[name="type_marker"]').forEach((elem) => {
-        elem.addEventListener("change", function(event) {
+        elem.addEventListener("change", function (event) {
           if (singleMarker.checked) {
             removeAllMarkers();
           }
@@ -99,10 +103,26 @@ map.on("click", (e) => {
       map.on("click", (e) => {
         if (singleMarker.checked) {
           removeAllMarkers();
-          var marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+          var marker = L.marker(e.latlng, {
+            draggable: true,
+            autoPan: true,
+          }).addTo(map);
+          marker
+            .bindPopup(
+              "Latitude: " + e.latlng.lat + "<br>Longitude: " + e.latlng.lng
+            )
+            .openPopup();
           markers.push(marker);
         } else {
-          var marker = L.marker(e.latlng, { draggable: true, autoPan: true }).addTo(map);
+          var marker = L.marker(e.latlng, {
+            draggable: true,
+            autoPan: true,
+          }).addTo(map);
+          marker
+            .bindPopup(
+              "Latitude: " + e.latlng.lat + "<br>Longitude: " + e.latlng.lng
+            )
+            .openPopup();
           markers.push(marker);
         }
       });
